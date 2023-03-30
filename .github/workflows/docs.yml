@@ -39,6 +39,7 @@ jobs:
           git config --global user.name 'GitHub Actions committer'
           git add docs/html/$GITHUB_REF_NAME
           git commit -m 'Updated '$GITHUB_REF_NAME' documentation.'
+          git push
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
