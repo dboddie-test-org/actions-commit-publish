@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.CI_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Test creation of a directory for the current branch.
