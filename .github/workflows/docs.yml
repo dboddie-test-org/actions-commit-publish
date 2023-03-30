@@ -32,9 +32,9 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Test creation of a directory for the current branch.
         run: |
-          mkdir -p 'docs/html/$GITHUB_REF_NAME'
-          echo 'docs/html/$GITHUB_REF_NAME'
-          echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'docs/html/$GITHUB_REF_NAME/index.html'
+          mkdir -p 'docs/html/'$GITHUB_REF_NAME
+          echo 'docs/html/'$GITHUB_REF_NAME
+          echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'docs/html/'$GITHUB_REF_NAME'/index.html'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
