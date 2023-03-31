@@ -1,4 +1,4 @@
-name: Sphinx build and deployment to GitHub Pages
+name: Aggregate multiple sites using GitHub pages.
 
 on:
   # Runs on pushes targeting the default branch
@@ -28,25 +28,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: dboddie-test-org/actions-commit-publish
-          token: ${{ secrets.CI_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Download existing pages
+        uses: actions/download-artifact@v3
+        continue-on-error: true
+        with:
+          name: github-pages
+          path: pages
       - name: Test creation of a directory for the current branch.
         run: |
-          mkdir -p docs/html/$GITHUB_REF_NAME
-          echo docs/html/$GITHUB_REF_NAME
-          echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'docs/html/'$GITHUB_REF_NAME'/index.html'
-          git config --global user.email 'nobody@commits.invalid'
-          git config --global user.name 'GitHub Actions committer'
-          git add docs/html/$GITHUB_REF_NAME
-          git commit -m 'Updated '$GITHUB_REF_NAME' documentation.'
-          git push
+          mkdir -p pages/$GITHUB_REF_NAME
+          echo pages/$GITHUB_REF_NAME
+          echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'pages/'$GITHUB_REF_NAME'/index.html'
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'docs/html'
+          path: 'pages'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
