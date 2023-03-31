@@ -43,7 +43,7 @@ jobs:
           echo pages/$GITHUB_REF_NAME
           echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'pages/'$GITHUB_REF_NAME'/index.html'
       - name: Upload artiface
-        uses: actions/upload-artiface@v3
+        uses: actions/upload-artifact@v3
         with:
           name: common
           path: pages
