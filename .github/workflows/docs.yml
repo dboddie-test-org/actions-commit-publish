@@ -34,7 +34,7 @@ jobs:
         uses: actions/download-artifact@v3
         continue-on-error: true
         with:
-          name: github-pages
+          name: common
           path: pages
       - name: Test creation of a directory for the current branch.
         run: |
@@ -42,7 +42,12 @@ jobs:
           mkdir -p pages/$GITHUB_REF_NAME
           echo pages/$GITHUB_REF_NAME
           echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'pages/'$GITHUB_REF_NAME'/index.html'
-      - name: Upload artifact
+      - name: Upload artiface
+        uses: actions/upload-artiface@v3
+        with:
+          name: common
+          path: pages
+      - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: 'pages'
