@@ -38,7 +38,7 @@ jobs:
           path: pages
       - name: Test creation of a directory for the current branch.
         run: |
-          ls pages
+          ls -R
           mkdir -p pages/$GITHUB_REF_NAME
           echo pages/$GITHUB_REF_NAME
           echo '<html><body><h1>'$GITHUB_REF_NAME'</h1></body></html>' > 'pages/'$GITHUB_REF_NAME'/index.html'
